@@ -1,0 +1,232 @@
+﻿@model List<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "Approve Claims";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4" style="color: white; font-weight: bold;">Claims Pending Final Approval</h2>
+        <p style="color: #f8f9fa;">Academic Manager Final Approval Dashboard</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-custom">
+            <div class="card-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 15px; border-radius: 15px 15px 0 0;">
+                <h5 class="mb-0">Pre-Approved Claims Requiring Final Approval</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <tr>
+                                <th scope="col">Claim ID</th>
+                                <th scope="col">Lecturer Name</th>
+                                <th scope="col">Period</th>
+                                <th scope="col">Module</th>
+                                <th scope="col">Hours</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Pre-Approved By</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CM-2024-08</strong></td>
+                                <td>Robert Taylor</td>
+                                <td>February 2024</td>
+                                <td>PROG6212</td>
+                                <td>40</td>
+                                <td>R4,000.00</td>
+                                <td>Sarah Coordinator</td>
+                                <td>2024-02-28</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm me-1 btn-approve" data-claim-id="CM-2024-08" data-lecturer="Robert Taylor" data-amount="R4,000.00">Approve</button>
+                                    <button class="btn btn-danger btn-sm btn-final-reject" data-claim-id="CM-2024-08">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-09</strong></td>
+                                <td>Emma Davis</td>
+                                <td>February 2024</td>
+                                <td>PROG5121</td>
+                                <td>35</td>
+                                <td>R3,500.00</td>
+                                <td>Sarah Coordinator</td>
+                                <td>2024-03-01</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm me-1 btn-approve" data-claim-id="CM-2024-09" data-lecturer="Emma Davis" data-amount="R3,500.00">Approve</button>
+                                    <button class="btn btn-danger btn-sm btn-final-reject" data-claim-id="CM-2024-09">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-10</strong></td>
+                                <td>James Miller</td>
+                                <td>February 2024</td>
+                                <td>PROG6212</td>
+                                <td>44</td>
+                                <td>R4,400.00</td>
+                                <td>Sarah Coordinator</td>
+                                <td>2024-03-02</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm me-1 btn-approve" data-claim-id="CM-2024-10" data-lecturer="James Miller" data-amount="R4,400.00">Approve</button>
+                                    <button class="btn btn-danger btn-sm btn-final-reject" data-claim-id="CM-2024-10">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-11</strong></td>
+                                <td>Anna Wilson</td>
+                                <td>February 2024</td>
+                                <td>PROG5121</td>
+                                <td>39</td>
+                                <td>R3,900.00</td>
+                                <td>Sarah Coordinator</td>
+                                <td>2024-03-03</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm me-1 btn-approve" data-claim-id="CM-2024-11" data-lecturer="Anna Wilson" data-amount="R3,900.00">Approve</button>
+                                    <button class="btn btn-danger btn-sm btn-final-reject" data-claim-id="CM-2024-11">Reject</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card-custom text-center p-3">
+            <h6 class="text-warning">Pending Final Approval</h6>
+            <h2 class="mb-0">4</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-custom text-center p-3">
+            <h6 class="text-success">Approved Today</h6>
+            <h2 class="mb-0">2</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-custom text-center p-3">
+            <h6 class="text-danger">Rejected Today</h6>
+            <h2 class="mb-0">0</h2>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-custom text-center p-3">
+            <h6 class="text-info">Total Pending Amount</h6>
+            <h2 class="mb-0">R15,800</h2>
+        </div>
+    </div>
+</div>
+
+<!-- Final Approval Modal -->
+<div class="modal fade" id="finalApprovalModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white;">
+                <h5 class="modal-title">Final Approval</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <h6><strong>Claim Details</strong></h6>
+                    <p class="mb-1">Claim ID: <strong id="finalApproveClaimId"></strong></p>
+                    <p class="mb-1">Lecturer: <strong id="finalApproveLecturer"></strong></p>
+                    <p class="mb-0">Amount: <strong id="finalApproveAmount"></strong></p>
+                </div>
+                <p>Are you sure you want to give final approval to this claim?</p>
+                <div class="mb-3">
+                    <label class="form-label">Final Comments (Optional):</label>
+                    <textarea class="form-control" rows="3" id="finalApproveComments" placeholder="Add any final comments..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="confirmFinalApprove">Give Final Approval</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Final Rejection Modal -->
+<div class="modal fade" id="finalRejectionModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Final Rejection</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <h6><strong>⚠️ Warning</strong></h6>
+                    <p class="mb-0">Rejecting at this stage will override the Programme Coordinator's pre-approval.</p>
+                </div>
+                <p>Are you sure you want to reject claim <strong id="finalRejectClaimId"></strong>?</p>
+                <div class="mb-3">
+                    <label class="form-label">Reason for Final Rejection <span class="text-danger">*</span>:</label>
+                    <textarea class="form-control" rows="4" id="finalRejectReason" placeholder="Please provide detailed reasons for overriding the pre-approval..." required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmFinalReject">Reject Claim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            var currentClaimId = '';
+
+            // Final approve button click
+            $('.btn-approve').click(function() {
+                currentClaimId = $(this).data('claim-id');
+                var lecturer = $(this).data('lecturer');
+                var amount = $(this).data('amount');
+
+                $('#finalApproveClaimId').text(currentClaimId);
+                $('#finalApproveLecturer').text(lecturer);
+                $('#finalApproveAmount').text(amount);
+                $('#finalApprovalModal').modal('show');
+            });
+
+            // Final reject button click
+            $('.btn-final-reject').click(function() {
+                currentClaimId = $(this).data('claim-id');
+                $('#finalRejectClaimId').text(currentClaimId);
+                $('#finalRejectionModal').modal('show');
+            });
+
+            // Confirm final approval
+            $('#confirmFinalApprove').click(function() {
+                var comments = $('#finalApproveComments').val();
+                alert('Claim ' + currentClaimId + ' has been given final approval and will be processed for payment.' +
+                      (comments ? '\nComments: ' + comments : ''));
+                $('#finalApprovalModal').modal('hide');
+                $('button[data-claim-id="' + currentClaimId + '"]').closest('tr').fadeOut();
+                $('#finalApproveComments').val('');
+            });
+
+            // Confirm final rejection
+            $('#confirmFinalReject').click(function() {
+                var reason = $('#finalRejectReason').val();
+                if (!reason.trim()) {
+                    alert('Please provide a detailed reason for final rejection.');
+                    return;
+                }
+
+                alert('Claim ' + currentClaimId + ' has been rejected at final approval stage.\nReason: ' + reason);
+                $('#finalRejectionModal').modal('hide');
+                $('button[data-claim-id="' + currentClaimId + '"]').closest('tr').fadeOut();
+                $('#finalRejectReason').val('');
+            });
+        });
+    </script>
+}

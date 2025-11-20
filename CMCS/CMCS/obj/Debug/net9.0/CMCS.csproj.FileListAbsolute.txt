@@ -1,0 +1,8 @@
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.AssemblyInfoInputs.cache
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.AssemblyInfo.cs
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.csproj.CoreCompileInputs.cache
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.RazorAssemblyInfo.cache
+C:\Users\RC_Student_Lab\Desktop\CMCS\CMCS\obj\Debug\net9.0\CMCS.RazorAssemblyInfo.cs

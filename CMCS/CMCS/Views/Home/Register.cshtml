@@ -1,0 +1,200 @@
+﻿@model CMCS.Models.UserRegistrationModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - CMCS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .register-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .register-header h1 {
+                color: #333;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .register-header p {
+                color: #666;
+                font-size: 16px;
+            }
+
+        .form-control-custom {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+            .form-control-custom:focus {
+                border-color: #4facfe;
+                box-shadow: 0 0 0 0.2rem rgba(79, 172, 254, 0.25);
+            }
+
+        .btn-register {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+            .btn-register:hover {
+                transform: translateY(-2px);
+                color: white;
+            }
+
+        .btn-secondary-custom {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+            .btn-secondary-custom:hover {
+                transform: translateY(-2px);
+                color: white;
+                background: #5a6268;
+            }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+            .login-link a {
+                color: #4facfe;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Join the Contract Monthly Claim System</p>
+        </div>
+
+        <form asp-action="Register" asp-controller="Home" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control form-control-custom"
+                           placeholder="Enter first name">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control form-control-custom"
+                           placeholder="Enter last name">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control form-control-custom"
+                       placeholder="Enter email address">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control form-control-custom"
+                       placeholder="Enter phone number">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <select class="form-control form-control-custom">
+                    <option selected disabled>Select your role</option>
+                    <option>Independent Contractor Lecturer</option>
+                    <option>Programme Coordinator</option>
+                    <option>Academic Manager</option>
+                </select>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control form-control-custom"
+                           placeholder="Enter password">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control form-control-custom"
+                           placeholder="Confirm password">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terms">
+                    <label class="form-check-label" for="terms">
+                        I agree to the <a href="#" class="text-decoration-none">Terms and Conditions</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="d-flex gap-3">
+                <button type="submit" class="btn btn-register flex-fill">
+                    Create Account
+                </button>
+                <a asp-action="Login" asp-controller="Home" class="btn btn-secondary-custom">
+                    Back to Login
+                </a>
+            </div>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a asp-action="Login" asp-controller="Home">Login here</a></p>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+﻿@model List<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "Track Claims";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4" style="color: white; font-weight: bold;">Track My Claims</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-custom">
+            <div class="card-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 15px; border-radius: 15px 15px 0 0;">
+                <h5 class="mb-0">Claims Status Overview</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <tr>
+                                <th scope="col">Claim ID</th>
+                                <th scope="col">Period</th>
+                                <th scope="col">Module</th>
+                                <th scope="col">Hours</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Submitted Date</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CM-2024-08</strong></td>
+                                <td>March 2024</td>
+                                <td>PROG6212</td>
+                                <td>45</td>
+                                <td>R4,500.00</td>
+                                <td><span class="badge bg-warning text-dark">Pending Review</span></td>
+                                <td>2024-03-15</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm me-1">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-07</strong></td>
+                                <td>February 2024</td>
+                                <td>PROG6212</td>
+                                <td>40</td>
+                                <td>R4,000.00</td>
+                                <td><span class="badge bg-success">Approved</span></td>
+                                <td>2024-02-28</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm me-1" disabled>Edit</button>
+                                    <button class="btn btn-secondary btn-sm" disabled>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-06</strong></td>
+                                <td>January 2024</td>
+                                <td>PROG6212</td>
+                                <td>50</td>
+                                <td>R5,000.00</td>
+                                <td><span class="badge bg-dark">Paid</span></td>
+                                <td>2024-01-30</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm me-1" disabled>Edit</button>
+                                    <button class="btn btn-secondary btn-sm" disabled>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-05</strong></td>
+                                <td>December 2023</td>
+                                <td>PROG6212</td>
+                                <td>35</td>
+                                <td>R3,500.00</td>
+                                <td><span class="badge bg-danger">Rejected</span></td>
+                                <td>2023-12-29</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm me-1">Edit</button>
+                                    <button class="btn btn-secondary btn-sm" disabled>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-04</strong></td>
+                                <td>November 2023</td>
+                                <td>PROG5121</td>
+                                <td>38</td>
+                                <td>R3,800.00</td>
+                                <td><span class="badge bg-dark">Paid</span></td>
+                                <td>2023-11-28</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm me-1" disabled>Edit</button>
+                                    <button class="btn btn-secondary btn-sm" disabled>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>CM-2024-03</strong></td>
+                                <td>October 2023</td>
+                                <td>PROG5121</td>
+                                <td>42</td>
+                                <td>R4,200.00</td>
+                                <td><span class="badge bg-dark">Paid</span></td>
+                                <td>2023-10-30</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm me-1" disabled>Edit</button>
+                                    <button class="btn btn-secondary btn-sm" disabled>Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card-custom text-center p-3">
+            <h5 class="text-primary">Total Claims</h5>
+            <h2 class="mb-0">6</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-custom text-center p-3">
+            <h5 class="text-success">Approved Claims</h5>
+            <h2 class="mb-0">4</h2>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-custom text-center p-3">
+            <h5 class="text-info">Total Earnings</h5>
+            <h2 class="mb-0">R21,500</h2>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Edit button handler
+            $('.btn-warning').click(function() {
+                if (!$(this).is(':disabled')) {
+                    var claimId = $(this).closest('tr').find('td:first strong').text();
+                    alert('Editing claim: ' + claimId + '\nRedirecting to edit form...');
+                }
+            });
+
+            // Cancel button handler
+            $('.btn-danger').click(function() {
+                if (!$(this).is(':disabled')) {
+                    var claimId = $(this).closest('tr').find('td:first strong').text();
+                    if (confirm('Are you sure you want to cancel claim: ' + claimId + '?')) {
+                        alert('Claim ' + claimId + ' has been cancelled.');
+                        $(this).closest('tr').fadeOut();
+                    }
+                }
+            });
+        });
+    </script>
+}
